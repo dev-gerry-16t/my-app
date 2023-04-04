@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ComponentCards from "../../components/ComponentCards";
 import { Container } from "../../constants/style-constants";
+import RoutesPages from "../../constants/pages";
 
 const ContainerCards = styled.div`
   display: flex;
@@ -16,13 +17,15 @@ const Home = () => {
         <h1>Bienvenido a mi test</h1>
         <p>Elige la Opción que deseas evaluar</p>
         <ContainerCards>
-          <ComponentCards navigateTo="contador" title="Counter" />
-          <ComponentCards
-            navigateTo="temperatura"
-            title="TemperatureConverter"
-          />
-          <ComponentCards navigateTo="carousel" title="ImageCarousel" />
-          <ComponentCards navigateTo="tareas" title="To-Do" />
+          {RoutesPages.map((row, ix) => {
+            return (
+              <ComponentCards
+                key={`cards-${ix}`}
+                navigateTo={row.path}
+                title={row.title}
+              />
+            );
+          })}
         </ContainerCards>
       </Container>
     </div>
